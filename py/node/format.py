@@ -29,9 +29,6 @@ class PromptUtilitiesJoinStringList(BaseNode):
     @classmethod
     def INPUT_TYPES(s):
         input_types = {
-            "required": {
-                "separator": ("STRING", {"default": ", ", "display": "separator"}),
-            },
             "optional": {
                 "arg1": ("STRING", {"forceInput": True}),
             },
@@ -42,7 +39,8 @@ class PromptUtilitiesJoinStringList(BaseNode):
     RETURN_TYPES = ("STRING",)
     FUNCTION = "join"
 
-    def join(self, separator, **kwargs):
+    def join(self, **kwargs):
         # join without empty strings.
+        separator = ", "
         result = separator.join([s for s in kwargs.values() if s])
         return (result,)
